@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+// The greeting service definition.
+service SomeRemoteClass {
+    // Sends a greeting
+    rpc giveme (Empty) returns (GivemeReply) {}
+    rpc getit (GetitRequest) returns (Empty) {}
+}
+
+
+message Empty {}
+
+// The request message containing the user's name.
+message GetitRequest {
+    required string message = 1;
+}
+
+
+// The response message containing the greetings
+message GivemeReply {
+    required string message = 1;
+}
