@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+import os
+
 class SomeRemoteClass(object):
     def giveme(self):
-        return "bla-"*10000
+        return os.urandom(40000)
 
     def getit(self, bigmsg):
         print "get %i" % len(bigmsg)

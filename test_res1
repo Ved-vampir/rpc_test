@@ -1,0 +1,153 @@
+============== pyro (5 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.576301 sec
+sent = 1.145508 kb, recv = 24.600000 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 5.313107 sec, average time : 1.062621 sec
+sent = 10.392382 kb, recv = 188.441290 kb
+average sent = 2.078476 kb, recv = 37.688258 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.282473 sec
+sent = 12.641010 kb, recv = 0.822657 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 0.247374 sec, average time : 0.049475 sec
+sent = 53.496300 kb, recv = 2.876953 kb
+average sent = 10.699260 kb, recv = 0.575391 kb
+============== pyro (100 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 1.480649 sec
+sent = 1.106640 kb, recv = 27.768370 kb
+- Multiple (100) connections test -
+0 clients failed, total time : 22.867883 sec, average time : 0.228679 sec
+sent = 178.139128 kb, recv = 3826.149560 kb
+average sent = 1.781391 kb, recv = 38.261496 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.264057 sec
+sent = 13.003330 kb, recv = 0.568360 kb
+- Multiple (100) connections test -
+0 clients failed, total time : 8.542279 sec, average time : 0.085423 sec
+sent = 1065.633200 kb, recv = 70.589460 kb
+average sent = 10.656332 kb, recv = 0.705895 kb
+============== pyro (200 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.626078 sec
+sent = 1.342383 kb, recv = 27.124230 kb
+- Multiple (200) connections test -
+0 clients failed, total time : 29.368437 sec, average time : 0.146842 sec
+sent = 336.525072 kb, recv = 8010.802940 kb
+average sent = 1.682625 kb, recv = 40.054015 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.232415 sec
+sent = 6.348630 kb, recv = 0.435939 kb
+- Multiple (200) connections test -
+0 clients failed, total time : 9.909897 sec, average time : 0.049549 sec
+sent = 2359.497590 kb, recv = 156.670770 kb
+average sent = 11.797488 kb, recv = 0.783354 kb
+============== rpyc (5 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.463912 sec
+sent = 0.451173 kb, recv = 0.863673 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 0.379371 sec, average time : 0.075874 sec
+sent = 2.264061 kb, recv = 4.322460 kb
+average sent = 0.452812 kb, recv = 0.864492 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.669003 sec
+sent = 0.542577 kb, recv = 0.728319 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 0.514833 sec, average time : 0.102967 sec
+sent = 2.479101 kb, recv = 3.641610 kb
+average sent = 0.495820 kb, recv = 0.728322 kb
+============== rpyc (100 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.452301 sec
+sent = 0.451173 kb, recv = 0.863673 kb
+- Multiple (100) connections test -
+0 clients failed, total time : 8.683769 sec, average time : 0.086838 sec
+sent = 85.404275 kb, recv = 134.643869 kb
+average sent = 0.854043 kb, recv = 1.346439 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.689552 sec
+sent = 0.550194 kb, recv = 0.732423 kb
+- Multiple (100) connections test -
+7 clients failed, total time : 10.271725 sec, average time : 0.102717 sec
+sent = 106.875570 kb, recv = 139.513963 kb
+average sent = 1.068756 kb, recv = 1.395140 kb
+============== rpyc (200 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.462058 sec
+sent = 0.459375 kb, recv = 0.867774 kb
+- Multiple (200) connections test -
+38 clients failed, total time : 6.288858 sec, average time : 0.031444 sec
+sent = 155.458639 kb, recv = 231.836600 kb
+average sent = 0.777293 kb, recv = 1.159183 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.470273 sec
+sent = 0.495702 kb, recv = 0.728319 kb
+- Multiple (200) connections test -
+0 clients failed, total time : 5.616603 sec, average time : 0.028083 sec
+sent = 203.616510 kb, recv = 251.578740 kb
+average sent = 1.018083 kb, recv = 1.257894 kb
+============== web (5 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.322323 sec
+sent = 1.195314 kb, recv = 24.681450 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 2.499571 sec, average time : 0.499914 sec
+sent = 7.389840 kb, recv = 146.207900 kb
+average sent = 1.477968 kb, recv = 29.241580 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.000022 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+- Multiple (5) connections test -
+0 clients failed, total time : 0.005387 sec, average time : 0.001077 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+average sent = 0.000000 kb, recv = 0.000000 kb
+============== web (100 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.352254 sec
+sent = 1.117968 kb, recv = 24.565440 kb
+- Multiple (100) connections test -
+0 clients failed, total time : 9.674727 sec, average time : 0.096747 sec
+sent = 186.285474 kb, recv = 4260.949500 kb
+average sent = 1.862855 kb, recv = 42.609495 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.000023 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+- Multiple (100) connections test -
+0 clients failed, total time : 0.100736 sec, average time : 0.001007 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+average sent = 0.000000 kb, recv = 0.000000 kb
+============== web (200 clients, 10000 bytes) ==================
+============== reading test ==================
+- Single read test -
+mes len = 39.000000 kb, time : 0.336355 sec
+sent = 0.885936 kb, recv = 24.372060 kb
+- Multiple (200) connections test -
+1 clients failed, total time : 24.864554 sec, average time : 0.124323 sec
+sent = 365.403447 kb, recv = 7889.844830 kb
+average sent = 1.827017 kb, recv = 39.449224 kb
+============== writing test ==================
+- Single write test -
+mes len = 9.000000 kb, time : 0.000024 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+- Multiple (200) connections test -
+0 clients failed, total time : 0.201156 sec, average time : 0.001006 sec
+sent = 0.000000 kb, recv = 0.000000 kb
+average sent = 0.000000 kb, recv = 0.000000 kb

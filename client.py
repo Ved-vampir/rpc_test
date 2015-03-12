@@ -2,6 +2,7 @@
 
 import os
 import sys
+import json
 import time
 import psutil
 import threading
@@ -65,6 +66,16 @@ def main():
     rpc_type = sys.argv[1]
     client_count = int(sys.argv[2])
     mes_size = int(sys.argv[3])
+    mes = os.urandom(mes_size)
+
+    if os.path.exists("json_stat"):
+        with open("json_stat", "r") as f:
+            results = json.load(f)
+    else:
+        results = {}
+    if rpc_type not in results:       
+        results[rpc_type] = {"read":{"time":[], "sent":[], "recv":[]},
+                             "write":{"time":[], "sent":[], "recv":[]}}
 
     net_logger = Nethogs()
 
@@ -78,7 +89,9 @@ def main():
     kbytes = net_logger.exit()
     print "mes len = %f kb, time : %f sec" % (l/1024, lat)
     print "sent = %f kb, recv = %f kb" % kbytes
-
+    results[rpc_type]["read"]["time"].append(lat)
+    results[rpc_type]["read"]["sent"].append(kbytes[0])
+    results[rpc_type]["read"]["recv"].append(kbytes[1])
  
     print "- Multiple (%i) connections test -" % client_count
     net_logger.start()
@@ -100,17 +113,23 @@ def main():
     print "%i clients failed, total time : %f sec, average time : %f sec" % (failed, lat, lat/client_count)
     print "sent = %f kb, recv = %f kb" % kbytes
     print "average sent = %f kb, recv = %f kb" % (kbytes[0]/client_count, kbytes[1]/client_count)
-
+    results[rpc_type]["read"]["time"].append(lat/client_count)
+    results[rpc_type]["read"]["sent"].append(kbytes[0]/client_count)
+    results[rpc_type]["read"]["recv"].append(kbytes[1]/client_count)
+ 
     print "============== writing test =================="
     print "- Single write test -"
     net_logger.start()
     begin = time.time()
-    l = remote_call(host=HOST, port=PORT, rpc_type=rpc_type, read=False, args="0"*mes_size)
+    l = remote_call(host=HOST, port=PORT, rpc_type=rpc_type, read=False, args=mes)
     lat = time.time() - begin
     kbytes = net_logger.exit()
     print "mes len = %f kb, time : %f sec" % (mes_size/1024, lat)
     print "sent = %f kb, recv = %f kb" % kbytes
- 
+    results[rpc_type]["write"]["time"].append(lat)
+    results[rpc_type]["write"]["sent"].append(kbytes[0])
+    results[rpc_type]["write"]["recv"].append(kbytes[1])
+
     print "- Multiple (%i) connections test -" % client_count
     net_logger.start()
     tests = []
@@ -118,7 +137,7 @@ def main():
     for i in range(0, client_count):
         delay = client_count - i
         tests.append(MyThread(target=remote_call,
-                              args=(HOST, PORT, rpc_type, False, delay, "0"*mes_size)))
+                              args=(HOST, PORT, rpc_type, False, delay, mes)))
         tests[i].start()
     failed = 0
     for i in range(0, client_count):
@@ -131,8 +150,12 @@ def main():
     print "%i clients failed, total time : %f sec, average time : %f sec" % (failed, lat, lat/client_count)
     print "sent = %f kb, recv = %f kb" % kbytes
     print "average sent = %f kb, recv = %f kb" % (kbytes[0]/client_count, kbytes[1]/client_count)
+    results[rpc_type]["write"]["time"].append(lat/client_count)
+    results[rpc_type]["write"]["sent"].append(kbytes[0]/client_count)
+    results[rpc_type]["write"]["recv"].append(kbytes[1]/client_count)
 
-
+    with open("json_stat", "w") as f:
+        json.dump(results, f)
 
 if __name__ == '__main__':
     main()
