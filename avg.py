@@ -3,16 +3,21 @@
 import json
 
 with open("json_stat", "r") as f:
-    results = json.loads(f)
+    results = json.load(f)
 
 avg = {}
 
 for rpc, lst in results.items():
     avg[rpc] = {}
-    for tp, vals in lst.items():
-        avg[rpc][tp] = 0
-        for v in vals:
-            avg[rpc][tp] += v
-        avg[rpc][tp] /= len(vals)
+    for tp, dts in lst.items():
+        avg[rpc][tp] = {}
+        for dt, vals in dts.items():
+            avg[rpc][tp][dt] = 0
+            for v in vals:
+                
+                avg[rpc][tp][dt] += v
+            avg[rpc][tp][dt] /= len(vals)
 
-print avg
+with open("json_stat_avg", "w") as f:
+    json.dump(avg, f, indent=4)
+

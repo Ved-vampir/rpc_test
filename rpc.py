@@ -49,3 +49,4 @@ class SomeRemoteClass_Rpyc(rpc_test.SomeRemoteClass, rpyc.Service):
 class SomeRemoteClass_Web(rpc_test.SomeRemoteClass):
         def GET(self):
             return self.giveme()
+

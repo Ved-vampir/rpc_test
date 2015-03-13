@@ -4,11 +4,13 @@ import sys
 import time
 import os
 import web
+import zmq
 from rpc import SomeRemoteClass_Web
 from rpyc.utils.server import ThreadedServer
 import Pyro4
 
 import rpc
+import rpc_test
 
 HOST = "172.16.54.71"
 PORT = int(os.getenv("PORT", 39997))
@@ -43,6 +45,22 @@ def start_web_server():
     app.run()
 
 
+def start_zmq_server():
+    context = zmq.Context()
+    socket = context.socket(zmq.REP)
+    socket.bind("tcp://%s:%i" % (HOST, PORT))
+    obj = rpc_test.SomeRemoteClass()
+    try:
+        while True:    
+            a = socket.recv()
+            if a == "giveme":
+                socket.send(obj.giveme())
+            else:
+                socket.send("get %i" % len(a))
+    except KeyboardInterrupt:
+        exit()
+
+
 
 def main():
     if sys.argv[1] == "pyro":
@@ -53,6 +71,8 @@ def main():
         start_grpc_server()
     elif sys.argv[1] == "web":
         start_web_server()
+    elif sys.argv[1] == "zmq":
+        start_zmq_server()
 
 
 if __name__ == '__main__':

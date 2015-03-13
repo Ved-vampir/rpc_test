@@ -110,9 +110,14 @@ def main():
 
     lat = time.time() - begin
     kbytes = net_logger.exit()
-    print "%i clients failed, total time : %f sec, average time : %f sec" % (failed, lat, lat/client_count)
-    print "sent = %f kb, recv = %f kb" % kbytes
+    print "average time : %f sec" % (lat/client_count)
+    # print "sent = %f kb, recv = %f kb" % kbytes
     print "average sent = %f kb, recv = %f kb" % (kbytes[0]/client_count, kbytes[1]/client_count)
+    print "----------------------------------------------------------"
+    print "%i clients read test, sec\t%f" % (client_count, lat)
+    print "%i clients read test, failed connections\t%f" % (client_count, failed)
+    print "%i clients read test, sent kbytes\t%f" % (client_count, kbytes[0])
+    print "%i clients read test, recv kbytes\t%f" % (client_count, kbytes[1])
     results[rpc_type]["read"]["time"].append(lat/client_count)
     results[rpc_type]["read"]["sent"].append(kbytes[0]/client_count)
     results[rpc_type]["read"]["recv"].append(kbytes[1]/client_count)
@@ -147,9 +152,13 @@ def main():
 
     lat = time.time() - begin
     kbytes = net_logger.exit()
-    print "%i clients failed, total time : %f sec, average time : %f sec" % (failed, lat, lat/client_count)
-    print "sent = %f kb, recv = %f kb" % kbytes
+    print "average time : %f sec" % (lat/client_count)
+    # print "sent = %f kb, recv = %f kb" % kbytes
     print "average sent = %f kb, recv = %f kb" % (kbytes[0]/client_count, kbytes[1]/client_count)
+    print "%i clients write test, sec\t%f" % (client_count, lat)
+    print "%i clients write test, failed connections\t%f" % (client_count, failed)
+    print "%i clients write test, sent kbytes\t%f" % (client_count, kbytes[0])
+    print "%i clients write test, recv kbytes\t%f" % (client_count, kbytes[1])
     results[rpc_type]["write"]["time"].append(lat/client_count)
     results[rpc_type]["write"]["sent"].append(kbytes[0]/client_count)
     results[rpc_type]["write"]["recv"].append(kbytes[1]/client_count)
